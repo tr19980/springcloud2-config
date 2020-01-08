@@ -1,0 +1,37 @@
+spring:
+  profiles:
+    active: dev
+
+
+---
+server:
+  port: 8001
+spring:
+  profiles: dev
+  application:
+    name: springcloud2-configeureka-dev
+  
+eureka:
+  instance:
+    hostname: localhost2  
+  client:
+    register-with-eureka: false 
+    fetch-registry: false 
+    service-url: 
+      defaultZone: http://localhost1:8001/eureka/,http://localhost2:8002/eureka/
+---
+server:
+  port: 8002
+spring:
+  profiles: test
+  application:
+    name: springcloud2-configeureka-test
+  
+eureka:
+  instance:
+    hostname: localhost2  
+  client:
+    register-with-eureka: false 
+    fetch-registry: false 
+    service-url: 
+      defaultZone: http://localhost2:8002/eureka/,http://localhost2:8002/eureka/ 
